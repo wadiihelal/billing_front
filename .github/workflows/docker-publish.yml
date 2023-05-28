@@ -27,11 +27,14 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v1
 
+      - name: Log in to Docker Hub
+        run: docker login -u wadiih -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
       - name: Build Docker image
-        run: |
-          docker build -t wadiih/frontbilling:${{ github.sha }} .
-          docker login -u wadiih -p ${{ secrets.DOCKERHUB_PASSWORD }}
-          docker push wadiih/frontbilling:${{ github.sha }}
+        run: docker build -t wadiih/frontbilling:${{ github.sha }} .
+
+      - name: Push Docker image to Docker Hub
+        run: docker push wadiih/frontbilling:${{ github.sha }}
 
   deploy-locally:
     needs: build-and-deploy
@@ -41,11 +44,8 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v1
 
-      - name: Wait for Docker image availability
-        run: |
-          while [ -z "$(docker images -q wadiih/frontbilling:${{ github.sha }})" ]; do
-            echo "Waiting for Docker image availability..."
-            sleep 5
-          done
-
       - name: Pull Docker image
+        run: docker pull wadiih/frontbilling:${{ github.sha }}
+
+      - name: Run Docker container
+        run: docker run -d -p 4200:80 wadiih/frontbilling:${{ github.sha }}
