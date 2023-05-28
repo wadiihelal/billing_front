@@ -1,0 +1,118 @@
+
+<mat-toolbar style="margin-top: -30px;">
+  <mat-icon>home</mat-icon> / 
+  <small>Invoices</small>
+  <span class="example-spacer"></span>
+  <mat-form-field class="search" appearance="standard"  >
+    <mat-label>
+        Please press enter to start the search
+    </mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Global Search" #input>
+  </mat-form-field>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <button (click)="selectionOrders()" mat-raised-button color="accent">Mass Download Invoices</button>
+</mat-toolbar>
+<div class="mat-elevation-z8" >
+  <table #table mat-table [dataSource]="datasource" matSort >
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)" >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- ID Column -->
+    <ng-container matColumnDef="idInvoice" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>INVOICE# </th>
+      <td mat-cell *matCellDef="let row">
+        <span *ngIf=" row.idInvoice.substr(0,1)==='A'">
+        <button mat-button class="ap" > {{row.idInvoice}}</button>
+        </span>
+        <span *ngIf=" row.idInvoice.substr(0,1)==='E'">
+        <button mat-button class="ep" > {{row.idInvoice}}</button>
+        </span>
+      </td>
+    </ng-container>
+    <!-- Progress Column -->
+    <ng-container matColumnDef="idOrder">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order# </th>
+      <td mat-cell *matCellDef="let row">
+        <span>
+          {{row.invoiceLines[0].idOrder}}
+        </span>
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="isbn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bar-code</th>
+      <td mat-cell *matCellDef="let row" >
+        <span  *ngIf="row.invoiceLines[0].isbn !== null ">{{row.invoiceLines[0].isbn13}}</span>
+      </td>
+    </ng-container>
+    <!-- Name Column -->
+    <!-- Fruit Column -->
+
+
+    <ng-container matColumnDef="productionPartId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Part#</th>
+      <td mat-cell *matCellDef="let row" >
+        <span  *ngIf="row.invoiceLines[0].partId!== null ">{{row.invoiceLines[0].partId}}</span>
+        <span  *ngIf="row.invoiceLines[0].partId == null ">-</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="clientPartNum">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PartNum </th>
+      <td mat-cell *matCellDef="let row" >
+        <span  *ngIf="row.invoiceLines[0].clientPartNum !== null ">{{row.invoiceLines[0].clientPartNum}}</span>
+        <span  *ngIf="row.invoiceLines[0].clientPartNum == null ">-</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client# </th>
+      <td mat-cell *matCellDef="let row">{{row.siren }} </td>
+    </ng-container>
+    <ng-container matColumnDef="invoiceDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date </th>
+      <td mat-cell *matCellDef="let row"> {{row.invoiceDate | date: 'MM/dd/yyyy'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="exported">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Exported</th>
+      <td mat-cell *matCellDef="let row">
+
+        <span style="background-color: #1289A7;border-radius: 12px;color:white;padding: 7px; " *ngIf="row.exported== true">
+          Exported
+
+        </span>
+        <span style="background-color: #F79F1F; border-radius: 12px;color:white;padding: 7px; " *ngIf="row.exported==false">Not Exported
+        </span>
+      </td>
+
+    </ng-container>
+    <ng-container matColumnDef="ActionsO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 12rem;">Actions </th>
+        <td  *matCellDef="let row">
+          <button mat-raised-button title="Preview" (click)="openDialog(row) " class="table-btn-view">
+            <mat-icon>visibility</mat-icon>
+          </button >
+          &nbsp;
+          <button mat-raised-button *ngIf="!row.annulated" title="Credit Note" (click)="openDialog1(row) " class="table-btn-cancel">
+            <mat-icon>cancel_presentation</mat-icon>
+
+          </button ></td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[10, 20, 50]" aria-label="Select page of invoices"></mat-paginator>

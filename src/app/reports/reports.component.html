@@ -1,0 +1,17 @@
+
+<mat-toolbar style="margin-top: -30px;">
+    <mat-icon>home</mat-icon> / 
+    <small>Reports</small>
+    <span class="example-spacer"></span>
+    <button mat-raised-button [matMenuTriggerFor]="menu" color="accent">Export Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item  (click)="exportInvoicesClient()" class="mr-1">Export Invoice By Client</button>
+        <button mat-menu-item  (click)="exportTableau()" class="mr-1">Export Sage</button>
+    </mat-menu>
+  </mat-toolbar>
+<div class="center" style="margin-top: -80px;">
+    <div  class="chartbox2">
+        <h2>Invoices by client</h2>
+        <canvas id="barchart"></canvas>
+    </div> 
+</div>

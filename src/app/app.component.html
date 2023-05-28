@@ -1,0 +1,33 @@
+<mat-toolbar>
+
+ <span style="margin-left: -20px;">Billing-MX</span>
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+ <button routerLink="/" mat-icon-button style="width:100px;">
+  <mat-icon>storage</mat-icon> Orders
+</button>
+&nbsp;
+<button routerLink="/invoices" mat-icon-button style="width:100px;">
+  <mat-icon>receipt</mat-icon> Invoices
+</button>
+&nbsp;
+<button routerLink="/reports" mat-icon-button style="width:100px;">
+  <mat-icon>report</mat-icon> Reports
+</button>
+&nbsp;
+<button routerLink="/archive" mat-icon-button style="width:100px;">
+  <mat-icon>archive</mat-icon> Archive
+</button>
+&nbsp;
+ <span class="example-spacer"></span>
+ <span style="float: right;"><small>{{username}}</small></span>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <button style="margin-right: 20px;" (click)="logOut()" mat-icon-button>
+   <mat-icon>logout</mat-icon> Logout
+ </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+<p-toast position="top-right" [baseZIndex]="99999999"></p-toast>
+<ngx-spinner  bdColor="rgba(58,57,57,57)">
+    <mat-spinner></mat-spinner>
+</ngx-spinner>

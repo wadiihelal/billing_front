@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angular</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+
+
+  <style>
+    .loader {
+      opacity: 1;
+      justify-content: center;
+
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #34dbc8;
+      width: 90px;
+      height: 90px;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+      position: relative;
+      left: 48%;
+      top:300px;
+
+    }
+    .image {
+      position: relative;
+      left: 40%;
+      top: 18rem;
+      height: 100px;
+      width: 320px;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .root
+    {
+      background: #363636 !important;
+      visibility: visible;
+      height: 100%;
+      width: 100%;
+    }
+
+    </style>
+
+</head>
+<body class="mat-typography ">
+  <app-root>
+    <div class="root">
+    <div >
+    </div>
+    </div>
+    <div class="loader">
+  </div>
+    </app-root>
+  </div>
+</body>
+</html>

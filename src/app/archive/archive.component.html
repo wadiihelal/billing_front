@@ -1,0 +1,64 @@
+
+<mat-toolbar style="margin-top: -30px;">
+    <mat-icon>home</mat-icon> / 
+    <small>Archive</small>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+<table #table   mat-table [dataSource]="datasource" matSort style="width: 100%;">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="idOrder">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ORDER ID#</th>
+        <ng-container >
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row"> {{row.idOrder}}
+            </td>
+
+        </ng-container>
+    </ng-container>
+    <ng-container matColumnDef="clientPoNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PO# </th>
+        <td mat-cell *matCellDef="let row"> {{row.clientPoNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="clientId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CLIENT ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.clientId}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> TITLE</th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0]?.title.length>11? row?.productionParts[0]?.title.substr(0,150)+'...'
+            :row?.productionParts[0]?.title }} </td>
+    </ng-container>
+    <ng-container matColumnDef="isbn10">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> BarCode </th>
+        <td mat-cell *matCellDef="let row" >
+          <span  *ngIf="row.packingSlips[0].shippings[0].barcode !== null ">{{row.packingSlips[0].shippings[0].barcode}}</span>
+        </td>
+      </ng-container>
+    <ng-container matColumnDef="Due Date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Due Date </th>
+        <td mat-cell *matCellDef="let row"> {{row?.dateExpacted | date: 'MM/dd/yyyy'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="qtyRequested">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity Requested </th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0].qtyRequested}} </td>
+    </ng-container>
+    <ng-container matColumnDef="qtyDelivered">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity Delivred </th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0].qtyDelivered}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+
+</table>
+
+<mat-paginator [length]="2" [pageSizeOptions]="[13]" ></mat-paginator>
+
+<!-- <div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" style=" color:white; margin-top: 1%;" mat-dialog-close>Close</button>
+</div> -->

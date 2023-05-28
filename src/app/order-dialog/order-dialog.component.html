@@ -1,0 +1,366 @@
+<h1
+  mat-dialog-title
+  style="
+    padding-left: 45%;
+    padding-right: 45%;
+    margin-top: 5px;
+    margin-bottom: 2%;
+    font-size: x-large;
+  "
+>
+  Edit Order
+</h1>
+<mat-dialog-content>
+  <form [formGroup]="orderForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Order Id</mat-label>
+      <input
+        formControlName="idOrder"
+        matInput
+        placeholder="idOrder"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Client PO Number</mat-label>
+      <input
+        formControlName="clientPoNumber"
+        matInput
+        placeholder="clientPoNumber"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>PO #</mat-label>
+      <input
+        formControlName="orderNum"
+        matInput
+        placeholder="orderNum"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Client </mat-label>
+      <input
+        formControlName="clientId"
+        matInput
+        placeholder="clientId"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>ISBN</mat-label>
+      <input
+        formControlName="isbn10"
+        matInput
+        placeholder="isbn"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Barcode</mat-label>
+      <input
+        formControlName="barcode"
+        matInput
+        placeholder="barcode"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input
+        formControlName="title"
+        matInput
+        placeholder="title"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>PNL Printing Number</mat-label>
+      <input
+        formControlName="pnlPrintingNumber"
+        matInput
+        placeholder="pnlPrintingNumber"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Due Date</mat-label>
+      <input formControlName="dateExpacted" [readonly]="true" matInput />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matSuffix
+        placeholder="dateExpacted"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #dateExpacted></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Invoice Delay</mat-label>
+      <input formControlName="invoiceDate" matInput />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matSuffix
+        placeholder="invoiceDate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #dateExpacted></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>QTY Requested</mat-label>
+      <input
+        formControlName="qtyRequested"
+        matInput
+        placeholder="qtyRequested"
+        [readonly]="true"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Qty Shipped</mat-label>
+      <input
+        formControlName="qtyDelivered"
+        matInput
+        placeholder="qtyDelivered"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Unit Price</mat-label>
+      <input
+        formControlName="unitPrice"
+        matInput
+        placeholder="unitPrice"
+        style="text-align: center"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Bill To </mat-label>
+      <input
+        formControlName="billAttn"
+        matInput
+        placeholder="billAttn"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Billing Country </mat-label>
+      <input
+        formControlName="billingCountry"
+        matInput
+        placeholder="BillingCountry"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Billing Location </mat-label>
+      <input
+        formControlName="billingLocation"
+        matInput
+        placeholder="BillingLocation"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Billing Address </mat-label>
+      <input
+        formControlName="billingAddress"
+        matInput
+        placeholder="billingAddress"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>billAccountName </mat-label>
+      <input
+        formControlName="billAccountName"
+        matInput
+        placeholder="billAccountName "
+        type="text"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Shipp To </mat-label>
+      <input
+        formControlName="shipAttn"
+        matInput
+        placeholder=""
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>shipping Country </mat-label>
+      <input
+        formControlName="shippingCountry"
+        matInput
+        placeholder="shippingCountry"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>shipping Location </mat-label>
+      <input
+        formControlName="shippingLocation"
+        matInput
+        placeholder="shippingLocation"
+        style="text-align: center"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Destination </mat-label>
+      <input
+        formControlName="destination"
+        matInput
+        placeholder="Address of shipping"
+        style="text-align: center"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>shipAccountName </mat-label>
+      <input
+        formControlName="shipAccountName"
+        matInput
+        placeholder="shipAccountName"
+        type="text"
+        style="text-align: center"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Surchage (%)</mat-label>
+      <input
+        formControlName="surcharge"
+        matInput
+        placeholder="%"
+        style="text-align: center"
+        type="number"
+      />
+    </mat-form-field>
+    <br />
+    <div style="text-align: center">
+      Add Extra Fees
+      <mat-slide-toggle
+        style="padding: 10px"
+        (change)="toggle($event)"
+        [checked]="checked"
+      ></mat-slide-toggle>
+      <div *ngIf="checked" (click)="addFees()" style="display: contents">
+        <button
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a plus one icon"
+        >
+          <mat-icon>library_add</mat-icon>
+        </button>
+      </div>
+      <br />
+  
+      <div style="display: inline-flex; padding: 5px" *ngIf="checked">
+        <div formArrayName="types">
+          <div *ngFor="let t of types.controls; let j = index">
+            <mat-form-field appearance="outline">
+              <mat-label>Type </mat-label>
+              <input
+                [formControlName]="j"
+                matInput
+                placeholder="Type "
+                type="text"
+                style="text-align: center"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div formArrayName="fees">
+          <div
+            *ngFor="let f of fees.controls; let i = index"
+            style="display: flex; padding-left: 2%"
+          >
+            <mat-form-field appearance="outline">
+              <mat-label>Value </mat-label>
+              <input
+                [formControlName]="i"
+                matInput
+                placeholder="Value "
+                type="number"
+                style="text-align: center"
+              />
+            </mat-form-field>
+            <div (click)="removeFees(i)" style="padding: 8px">
+              <button
+                mat-mini-fab
+                color="warn"
+                aria-label="Example icon button with a plus one icon"
+              >
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-toolbar style="margin-top: 2%">
+      <h4>List of PS</h4>
+      <!-- <div mat-dialog-action [align]="'end'" style="flex: 1 1 auto">
+        <button mat-raised-button color="primary" (click)="refresh(editData)">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div> -->
+    </mat-toolbar>
+    <table mat-table [dataSource]="psCall" matSort class="mat-elevation-z8">
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="psId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>PS ID#</th>
+        <ng-container>
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-button class="explore" mat-button>
+              {{ row.psId }}
+            </button>
+          </td>
+        </ng-container>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>QUANTITY</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <div mat-dialog-action [align]="'end'" style="padding-top: 1%">
+      <button
+        mat-raised-button
+        color="basic"
+        mat-dialog-close
+      >
+        Close
+      </button>
+      &nbsp;
+      <button
+        [disabled]="orderForm.invalid"
+        
+        mat-raised-button
+        color="accent"
+        mat-dialog-close
+        (click)="addOrder()"
+      >
+        {{ btnAction }}
+      </button>
+      &nbsp;
+      <button
+        mat-raised-button
+        color="primary"
+        [textContent]="hello"
+        (click)="finalUpdateOrder()"
+      ></button>
+    </div>
+  </form>
+  &nbsp;
+</mat-dialog-content>

@@ -1,0 +1,79 @@
+<h1 mat-dialog-title style="text-align: center; margin-top:5px;margin-bottom:2%;font-size:x-large;"> Edit Invoice {{editData.idInvoice}}</h1>
+
+
+<table mat-table [dataSource]="editData.invoiceLines" matSort class="mat-elevation-z8" >
+
+    <ng-container matColumnDef="customerPoNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PO# </th>
+        <td mat-cell *matCellDef="let row"> {{row.customerPoNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dsNumbers">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PS# </th>
+        <td mat-cell *matCellDef="let row"> {{row.dsNumbers}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="isbn10">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ISBN</th>
+        <td mat-cell *matCellDef="let row"> {{row.isbn10}} </td>
+
+    </ng-container>
+    <ng-container matColumnDef="oemPo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Part </th>
+        <td mat-cell *matCellDef="let row"> {{row.oemPo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="qty">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> QTY </th>
+        <td mat-cell *matCellDef="let row"> {{row.qty}} </td>
+    </ng-container>
+    <ng-container matColumnDef="unitPrice" style="padding-left: 2%;" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price</th>
+        <td mat-cell *matCellDef="let row">          
+                 <span *ngIf="row.qty>0">
+                    {{row.unitPrice}}
+                  </span>
+                 <span *ngIf="row.type=='extra'">
+                    {{row.total}}
+                  </span>
+    </ng-container>
+    <ng-container matColumnDef="surcharge" style="padding-left: 2%;" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Surcharge</th>
+        <td mat-cell *matCellDef="let row">          
+                 <span *ngIf="row.type!=='extra'">
+                    {{row.surcharge}}
+                  </span>
+    </ng-container>
+
+
+    <ng-container matColumnDef="ActionsO">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <ng-container matColumnDef="newtable1"  >
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="!row.diffLine && row.qty>0">
+                <button mat-button  (click)="EditRow(row) " >
+                    <mat-icon class="viewOrdre">edit</mat-icon>
+                  </button >
+              </span>
+              <span *ngIf="row.type === 'extra' && !row.diffLine" >
+                <button mat-button  (click)="editExtraFees() " >
+                    <mat-icon class="viewOrdre">edit</mat-icon>
+                  </button >
+                              </span>
+        </ng-container>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns11"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns11;"
+        (click)="selection.toggle(row)">
+    </tr>
+</table>
+<div mat-dialog-action [align]="'end'" style="padding-top: 1% ;">
+    <button mat-raised-button color="warn" style=" color:white;" mat-dialog-close (click)="Close()" >Close</button>
+    <button   style="margin-left: 20px; background-color: green; ;color:white;" mat-raised-button color="" mat-dialog-close (click)="viewAnnulationInvoice()">Save</button>
+</div>

@@ -1,0 +1,155 @@
+<div class="title">
+    <span class="example-spacer"></span>
+
+    <mat-form-field class="search" appearance="standard">
+        <mat-label>
+            <mat-icon>search</mat-icon> Please press enter to start the search
+        </mat-label>
+        <input matInput (keyup.enter)="applyFilter($event)" placeholder="Global Search" #input>
+    </mat-form-field>&nbsp;
+
+    <button  mat-button style="background-color: rgb(162, 213, 237);"    (click)="selectionOrders()">Invoice</button>&nbsp;&nbsp;
+</div>
+<table mat-table [dataSource]="ordersCall" matSort class="mat-elevation-z8">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="idOrder">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ORDER ID#</th>
+        <ng-container >
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row"> <button mat-button class="explore" mat-button [matMenuTriggerFor]="menu">
+                {{row.idOrder}}
+
+            </button>
+                <mat-menu style="width: 100%;" #menu="matMenu">
+
+                    <table #table2 mat-table [dataSource]="row.productionParts" matSort>
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="partid">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> PART ID </th>
+                            <td mat-cell *matCellDef="let row"><button mat-button class="explore"> {{row.partid}}
+                            </button></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unitPrice" style="padding-right: 1%;">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header > Unit  Price </th>
+                            <td mat-cell *matCellDef="let row" > {{row.unitPrice}}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="clientId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> CLIENT ID </th>
+                            <td mat-cell *matCellDef="let row"> {{row.clientId}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="qtyRequested">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> QTY RQ. </th>
+                            <td mat-cell *matCellDef="let row"> {{row.qtyRequested}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="qtyMin">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> QTY.Min </th>
+                            <td mat-cell *matCellDef="let row" style="padding-left: 2%;"> {{row.qtyMin}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="qtyMax">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> QTY.Max </th>
+                            <td mat-cell *matCellDef="let row"> {{row.qtyMax}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="qtyDelivered">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> QTY.Delivred </th>
+                            <td mat-cell *matCellDef="let row"> {{row.qtyDelivered}} </td>
+                        </ng-container>
+
+
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns2;" (click)="selection.toggle(row)"></tr>
+
+
+                    </table>
+
+                </mat-menu>
+            </td>
+
+        </ng-container>
+    </ng-container>
+    <ng-container matColumnDef="clientPoNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PO# </th>
+        <td mat-cell *matCellDef="let row"> {{row.clientPoNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="clientId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> CLIENT ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.clientId}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> TITLE</th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0]?.title.length>11? row?.productionParts[0]?.title.substr(0,150)+'...'
+            :row?.productionParts[0]?.title }} </td>
+    </ng-container>
+    <ng-container matColumnDef="isbn10">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ISBN </th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0].isbn10}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Due Date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Due Date </th>
+        <td mat-cell *matCellDef="let row"> {{row?.dateExpacted | date: 'MM/dd/yyyy'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="qtyRequested">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity Requested </th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0].qtyRequested}} </td>
+    </ng-container>
+    <ng-container matColumnDef="qtyDelivered">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity Delivred </th>
+        <td mat-cell *matCellDef="let row"> {{row?.productionParts[0].qtyDelivered}} </td>
+    </ng-container>
+    <ng-container matColumnDef="status" style="padding-left: 2%;" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+        <!-- {{row.status === 'checked' && 'checked' || ''}} -->
+        <td mat-cell *matCellDef="let row" >
+            <span style="background-color: green;border-radius: 12px;color:white;padding: 1.5%; " *ngIf="row.status == 'Checked'">
+              Checked
+
+            </span>
+            <span style="background-color: orange; border-radius: 12px;color:white;padding: 1.5%; " *ngIf="row.status !== 'Checked'">Pending
+               </span
+               > </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ActionsO">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+        <ng-container matColumnDef="newtable1"  >
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.status !=='checked'">
+                <button mat-button  (click)="EditOrder(row) ">
+                  <mat-icon class="viewOrdre">edit</mat-icon>
+                  </button >
+              </span>
+        </ng-container>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+
+</table>
+<div mat-dialog-action [align]="'end'">
+    
+    <button mat-raised-button color="warn" style=" color:white;" mat-dialog-close>Close</button>
+</div>

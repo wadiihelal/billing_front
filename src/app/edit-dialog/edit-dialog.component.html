@@ -1,0 +1,54 @@
+
+<form [formGroup]="invoiceLineForm"  style="margin: 2%; text-align: center;">
+    <mat-form-field appearance="outline" >
+        <mat-label>Quantity</mat-label>
+        <input formControlName="qty" matInput placeholder="qty"  >
+    </mat-form-field>
+    <mat-form-field appearance="outline" style=" margin-right: 1%; margin-left: 1%;">
+        <mat-label>Unit Price</mat-label>
+        <input formControlName="unitPrice" matInput placeholder="unitPrice"   >
+    </mat-form-field>
+    <mat-form-field appearance="outline" style=" margin-right: 1%; margin-left: 1%;">
+        <mat-label>Surcharge</mat-label>
+        <input formControlName="surcharge" matInput placeholder="surcharge" type="number" >
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="  padding-left: 1%;">
+        <mat-label>Production Page</mat-label>
+        <input formControlName="productionPage" matInput placeholder="productionPage"  >
+    </mat-form-field>
+  
+
+
+    <!-- <div style="display: inline-flex; padding: 5px;"  *ngIf="checked"> 
+    <div  formArrayName="types">   
+      <div *ngFor=" let  t of types.controls ; let j =index">
+        <mat-form-field appearance="outline">
+          <mat-label>Type      
+          </mat-label>
+          <input [formControlName]="j" matInput placeholder="Type " type="text" style="  text-align: center;"  >
+        </mat-form-field>   
+       </div>
+    </div>
+    <div formArrayName="fees" >
+        <div *ngFor=" let f of fees.controls; let i =index " style="display:flex; padding-left: 2%;">
+          <mat-form-field appearance="outline">
+            <mat-label>Value      
+            </mat-label>
+            <input [formControlName]="i" matInput placeholder="Value " type="number" style="  text-align: center;"  >
+          </mat-form-field>
+          <div  (click)="removeFees(i)" style="padding: 8px;">
+            <button mat-mini-fab color="warn" aria-label="Example icon button with a plus one icon">
+              <mat-icon>clear</mat-icon>
+            </button>
+            </div>
+        </div>
+  
+      </div>
+    </div> -->
+    <br>
+    <div mat-dialog-action [align]="'end'" style="padding-top: 1% ;">
+        <button mat-raised-button color="warn" style=" color:white;" mat-dialog-close>Close</button>
+        <button   style="margin-left: 20px; background-color: green; ;color:white;" mat-raised-button color="" mat-dialog-close (click)="saveRow(row)">Save</button>
+
+    </div>
+</form>

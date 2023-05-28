@@ -1,0 +1,51 @@
+
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$my-app-primary: mat.define-palette(mat.$indigo-palette, 800);
+$my-app-accent: mat.define-palette(mat.$teal-palette, 800);
+$my-app-warn: mat.define-palette(mat.$red-palette);
+
+$my-app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-app-primary,
+      accent: $my-app-accent,
+      warn: $my-app-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($my-app-theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.table-btn-view{
+    background-color: #0652DD;
+    color: #fff;
+    border-radius: 50px;
+}
+.table-btn-edit{
+    background-color: #1B1464;
+    color: #fff;
+    border-radius: 50px;
+}
+.table-btn-validate{
+    background-color: #006266;
+    color: #fff;
+    border-radius: 50px;
+}
+.table-btn-cancel{
+    background-color: #EE5A24;
+    color: #fff;
+    border-radius: 50px;
+}
+

@@ -1,0 +1,161 @@
+
+<div>
+  <div id="contentToPrint" >
+    <table style="width:100% !important; align-items: center; padding-top: 1%;">
+      <tr>
+        <td  style="width:33%">
+          <img class="img-fluid" src="../../../assets/img/logo-epac.png" alt="Logo-EPAC" style="width: 4.5cm;margin-top: 25px;">
+        </td>
+        <td>
+        <td class="col" style=" padding-top: 55px; margin-right: 10%; padding-left: 4px ;font-size: 58px !important; width: 33%;">
+          <div style="font-size: 25px !important;"> <h1>Invoice</h1></div>
+          <h1 style=" padding-top: 1px; font-weight: bold; font-size: 50px;">{{row?.idInvoice}}</h1>
+        </td>
+        <td style=" padding-top: 1%;padding-left: 10px;">
+          <div ><ngx-barcode [bc-height]="70" [bc-value]="row?.idInvoice" [bc-display-value]="false"></ngx-barcode></div>
+
+        </td>
+      </tr>
+    </table>
+    <table style="width:100% !important; align-items: center; padding-top: 2%;">
+      <tr style="width: 45px ;">
+        <td style="  font-size: 16px !important;background-color: black; color: #fff;  ">Ship To:
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>&nbsp;
+        <td style="font-size: 16px !important;background-color: black; color: #fff;">Bill To:
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>&nbsp;&nbsp;&nbsp;
+        <td style="font-size: 16px !important; background-color: black; color: #fff;">Details:
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size: 16px !important;">{{row?.shipAccountName}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">{{row?.billAccountName}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">Invoice:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{row?.idInvoice}}</td>
+      </tr>
+      <tr >
+        <td style="font-size: 16px !important;">Attn: {{row?.shipAttn}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">Attn: {{row?.billAttn}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">Invoice Date: &nbsp;&nbsp; {{row?.invoiceDate | date: 'MM/dd/yyyy'}}</td>
+      </tr>
+      <tr >
+        <td style="font-size: 16px !important;">{{row?.shippingAddress}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">{{row?.billingAddress}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">Due Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row?.dueDate| date: 'MM/dd/yyyy'}}</td>
+      </tr>
+      <tr >
+        <td style="font-size: 16px !important;">{{row?.shippingLocation}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">{{row?.billingLocation}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">Buyer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row?.billAttn}}</td>
+      </tr>
+      <tr>
+        <td style="font-size: 16px !important;">{{row?.shippingCountry}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;">{{row?.billingCountry}}</td>&nbsp;&nbsp;
+        <td style="font-size: 16px !important;"></td>
+      </tr>
+    </table>
+    <br>
+    <div class="table-responsive" style="text-align:left !important;overflow: hidden !important; " >
+      <table class="table-bordered-print" style="text-align:left !important; margin:0px; overflow: hidden !important;width: 100% !important;  border-collapse: collapse; font-size: 13px !important;">
+        <thead  style="background-color: #b1aeae; color: rgb(0, 0, 0);">
+        <tr style="line-height: 30px;">
+          <th>PO#</th>
+          <th>PS#</th>
+          <th>ISBN</th>
+          <th *ngIf="row.siren=='CAI'">Part</th>
+          <th *ngIf="row.siren=='SAV'">Print#</th>
+          <th>Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </th>
+          <th >QTY
+          </th>
+          <th >UNIT PRICE
+          </th>
+          <th *ngIf="row.siren!=='CAI'&&row.siren!=='SAV'"></th>
+
+          <th>TOTAL
+          </th>
+
+        </tr>
+        </thead>
+        <tbody >
+        <tr *ngFor="let item of row.invoiceLines;"  style="line-height: 30px; border-bottom: 0.5px rgb(158, 158, 158) solid ;" >
+          <ng-container  >
+            <td>{{item.poNumber}}</td>
+            <td>
+              <span *ngIf="item.diffLine==true">
+                {{item.isbn}}
+              </span>
+              <span *ngIf="item.psIds?.length>0"  >
+                {{item.psIds}}
+              </span>
+              <span *ngIf="item.type=='extra'"  >
+                {{item.isbn10}}
+              </span>
+              
+            </td>
+            <td>{{item.isbn13}}</td>
+            <td *ngIf="row.siren=='CAI'">{{item.partId}}</td>
+            <td *ngIf="row.siren=='SAV'">{{item.pnlPrintingNumber}}</td>
+            <td>{{item.title}}</td>
+            <td> {{item.qty}} </td>
+            <td *ngIf="item.unitPrice==undefined"> </td>
+            <td *ngIf="item.unitPrice!=undefined"> ${{item.unitPrice}} </td>
+            <td *ngIf="item.total ==undefined"> </td>
+            <td *ngIf="row.siren!=='CAI'&&row.siren!=='SAV'"></td>
+
+            <td *ngIf="item.total !=undefined">${{item.total | number:'1.0-3' }}</td>
+          </ng-container>
+        </tr>
+
+
+        </tbody>
+        <thead  style="background-color: #b1aeae; color: rgb(0, 0, 0);">
+        <tr style="line-height: 30px;">
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </th>
+          <th >
+          </th>
+          <th >Invoice Total(USD):
+          </th>
+          <th>$ {{ row.total | number:'1.0-3' }}
+          </th>
+
+        </tr>
+        </thead>
+
+        <tfoot >
+        </tfoot>
+      </table>
+    </div>
+    <br>
+    <br>
+
+  </div>
+  <div mat-dialog-action [align]="'end'">
+    &nbsp;   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+    <button class="p-button-secondary" pButton pRipple type="button" label="Close"  (click)="cancel()" icon="pi pi-times" iconPos="right" mat-dialog-close ></button>
+    &nbsp; &nbsp; &nbsp;<button class="p-button-success" pButton pRipple type="button" label="Download" [icon]="(pdfLoading2==true) ? 'pi pi-spin pi-spinner' : 'pi pi-save'" iconPos="right" *ngIf="row.exported == true" (click)="downloadPDF()" ></button>
+    &nbsp; &nbsp;
+  </div>
+</div>
+
+

@@ -1,0 +1,123 @@
+ <form [formGroup]="myGroup">
+    <h1 style="text-align:center">Export Sage</h1>
+
+    <div style="text-align: center;">
+
+          <div style="margin-bottom: 25px">
+            <mat-form-field  matFormFieldControl appearance="fill" >
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Start date" formControlName="dateStart">
+                  <input matEndDate placeholder="End date" formControlName="dateEnd">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+          </div>
+          <br>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <button mat-raised-button color="success" (click)="validate()"> Validate </button>
+
+  </div>
+ </form>
+ <p-table [value]="invoices" responsiveLayout="scroll" [paginator]="true" [rows]="5" *ngIf="invoices!== undefined">
+    <ng-template pTemplate="header" >
+        <tr>
+            <th>Invoice Date </th>
+            <th>Invoice Id</th>
+            <th>PO #</th>
+            <th>PM</th>
+            <th>Total</th>
+            <th>Due Date</th>
+            <th>Customer Id</th>
+            <th>Shipp Location</th>
+            <th> Compte Compte</th>
+            <th> Facility Code</th>
+            <th> Cust_INV_N°_invoiceID</th>
+            <th>Transport</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-flight>
+        <tr>
+            <td>{{flight?.invoiceDate | date: 'MM/dd/yyyy'}}</td>
+            <td>{{flight.idInvoice}}</td>
+            <td>         
+                <span  *ngIf="flight.invoiceLines[0].clientPartNum !== null ">{{flight.invoiceLines[0].clientPartNum}}</span>
+                <span  *ngIf="flight.invoiceLines[0].clientPartNum == null ">-</span>
+            </td>
+            <td>{{flight.accountManager}}</td>
+            <td>{{flight.total}}</td>
+            <td>{{flight?.dueDate | date: 'MM/dd/yyyy'}}</td>
+            <td>{{flight.siren}}</td>
+            <td>{{flight.shippingLocation}}</td>
+            <td>11000100</td>
+            <td>40001410</td>
+            <td>{{flight.siren }}_INV_N°_{{flight.idInvoice}}</td>
+            <td>No</td>
+        </tr>
+    </ng-template>
+</p-table>
+ <!-- <table #table mat-table [dataSource]="datasource" matSort id="excel-table"  *ngIf="show" style="text-align: center;">
+     <ng-container matColumnDef="invoiceDate">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Date </th>
+         <td mat-cell *matCellDef="let row">  {{row?.invoiceDate | date: 'MM/dd/yyyy'}} </td>
+     </ng-container>
+     <ng-container matColumnDef="idInvoice">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice id </th>
+         <td mat-cell *matCellDef="let row">{{row.idInvoice}}
+         </td>
+     </ng-container>
+     <ng-container matColumnDef="clientPartNum">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> PO# </th>
+         <td mat-cell *matCellDef="let row" >
+             <span  *ngIf="row.invoiceLines[0].clientPartNum !== null ">{{row.invoiceLines[0].clientPartNum}}</span>
+             <span  *ngIf="row.invoiceLines[0].clientPartNum == null ">-</span>
+         </td>
+     </ng-container>
+     <ng-container matColumnDef="customerPoNumber">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left: 4%;"> PM </th>
+         <td mat-cell *matCellDef="let row" style=" padding-left: 1%;">{{row.accountManager}}
+     </ng-container>
+     <ng-container matColumnDef="total">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left: 0%;"> Total </th>
+         <td mat-cell *matCellDef="let row"  style=" padding-left: 0%;">{{row.total}}
+     </ng-container>
+     <ng-container matColumnDef="dueDate">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left: 0%;">&nbsp;&nbsp;&nbsp;&nbsp; Due Date </th>
+         <td mat-cell *matCellDef="let row" style=" padding-left: 1%;">  {{row?.dueDate | date: 'MM/dd/yyyy'}} </td>
+     </ng-container>
+     <ng-container matColumnDef="clientId">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
+         <td mat-cell *matCellDef="let row">{{row.siren }} </td>
+     </ng-container>
+
+
+     <ng-container matColumnDef="Compte Compt">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> Compte Compt</th>
+         <td mat-cell *matCellDef="let row">11000100
+     </ng-container>
+     <ng-container matColumnDef="Facility Code">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> Facility Code </th>
+         <td mat-cell *matCellDef="let row">40001410
+     </ng-container>
+     <ng-container matColumnDef="Cust_INV_N°_invoiceID">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cust_INV_N°_invoiceID </th>
+         <td mat-cell *matCellDef="let row"> {{row.siren }}_INV_N°_{{row.idInvoice}} </td>
+     </ng-container>
+     <ng-container matColumnDef="Transport">
+         <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left: 3%;"> Transport</th>
+         <td mat-cell *matCellDef="let row" style=" padding-left: 3%;" > No</td>
+     </ng-container>
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+ </table>
+ <mat-paginator [pageSizeOptions]="[5,7, 10]" aria-label="Select page of users"></mat-paginator> -->
+
+ <div style="text-align:center;margin-top: 1%;">
+ <button *ngIf="show"mat-raised-button (click)="generate()" style="margin-right: 5px; color: white; background-color: green; margin-right: 2%; ">Submit</button>
+ <button *ngIf="show"mat-raised-button color="warn" style=" color:white;" mat-dialog-close>Close</button>
+ </div>

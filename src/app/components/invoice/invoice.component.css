@@ -1,0 +1,155 @@
+table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  td, th {
+    width: auto;
+  }
+  .title
+  {
+    display: flex;
+    justify-content: space-between;
+  }
+  .search
+  {
+    max-width: 20%;
+  }
+  .mat-menu-content:not(:empty)
+  {
+    width: 100%;
+  }
+  .mat-column-newtable {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 5% !important;
+    width: 5% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  .mat-column-partid {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 30% !important;
+    width: 300px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-title {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 30% !important;
+    width: 500px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  .mat-column-status {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 30% !important;
+    width: 300px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  ::ng-deep.mat-menu-panel {
+    max-width: none !important;
+
+  }
+  .mat-row:hover
+  {
+    background-color: whitesmoke;
+  }
+  .ap
+  {
+    background-color: #006266;
+    border-radius: 20px;
+    color: #fff;
+  }
+  .ep
+  {
+    background-color: #607D8B;
+    border-radius: 2rem;
+    color: #fff;
+  }
+  .viewOrdre
+  {
+      background-color: #607D8B;
+    border-radius: 20px;
+  }
+.vl {
+    border-left: 1px solid grey;
+    height: auto;
+  }
+
+p{
+    margin: -2px;
+}
+.boxes{
+    padding: 0.5cm;
+    border: 1px solid black;
+}
+.writeLine{
+    border-bottom: 0.5px solid black;
+}
+
+.myTable{
+
+        width:100% !important;
+        table-layout: fixed !important;
+        overflow-wrap: break-word !important;
+
+}
+
+
+  .table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td{
+    padding: 8px;
+}
+
+.table-bordered-print > tbody > tr > td,
+.table-bordered-print > thead > tr > td,
+.table-bordered-print {
+    border-right: 0;
+    border-left: 0;
+}
+
+
+.table-bordered-print th, td {
+    padding-left: 16px;
+    padding-right: 16px;
+  }

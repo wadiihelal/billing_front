@@ -1,0 +1,139 @@
+
+<div>
+    <div id="contentToPrint" >
+        <tr style="width:100% !important; align-items: center; padding-top:3px;">
+            <td >
+                <img class="img-fluid" src="../../../assets/img/logo-epac.png" alt="Logo-EPAC" style="width: 5cm;margin-top: 25px;"></td>
+            <td class="col" style=" padding-top:2 px; padding-left: 5px ;font-size: 45px;">
+                <div style="font-size: 25px !important;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Invoice</div>
+                <h1 style="  font-weight: bold;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EP {{row?.idInvoice}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+            </td>
+            <td style=" padding-left: 10%; padding-top: 4px;">
+                <ngx-barcode [bc-height]="70" [bc-value]="row?.idInvoice" [bc-display-value]="false"></ngx-barcode>
+            </td>
+        </tr>
+        <table style="width:100% !important; align-items: center; padding-top: 2%;">
+            <tr style="width: 45px ;">
+                <td style="  font-size: 16px !important;background-color: black; color: #fff;  ">Ship To:
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>&nbsp;
+                <td style="font-size: 16px !important;background-color: black; color: #fff;">Bill To:
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>&nbsp;&nbsp;&nbsp;
+                <td style="font-size: 16px !important; background-color: black; color: #fff;">Details:
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 16px !important;">{{row?.accountName}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">{{row?.accountManager}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">Invoice:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{row?.idInvoice}}</td>
+            </tr>
+            <tr >
+                <td style="font-size: 16px !important;">Attn: {{row?.shipAttn}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">Attn: {{row?.billAttn}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">Invoice Date: &nbsp;&nbsp; {{row?.invoiceDate | date: 'MM/dd/yyyy'}}</td>
+            </tr>
+            <tr >
+                <td style="font-size: 16px !important;">{{row?.shippingAddress}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">{{row?.billingAddress}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">Due Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row?.dueDate| date: 'MM/dd/yyyy'}}</td>
+            </tr>
+            <tr >
+                <td style="font-size: 16px !important;">{{row?.shippingLocation}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">{{row?.billingLocation}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">Buyer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{row?.billAttn}}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 16px !important;">{{row?.shippingCountry}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;">{{row?.billingCountry}}</td>&nbsp;&nbsp;
+                <td style="font-size: 16px !important;"></td>
+            </tr>
+        </table>
+        <br>
+        <div class="table-responsive" style="text-align:left !important;overflow: hidden !important; " >
+            <table class="table-bordered-print" style="text-align:left !important; margin:0px; overflow: hidden !important;width: 100% !important;  border-collapse: collapse; font-size: 13px !important;">
+                <thead  style="background-color: #979797; color: rgb(0, 0, 0);">
+                <tr style="line-height: 30px;">
+                    <th>PO#</th>
+                    <th>PS#</th>
+                    <th>ISBN</th>
+                    <th>Part</th>
+                    <th>Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </th>
+                    <th >QTY
+                    </th>
+                    <th >UNIT PRICE
+                    </th>
+                    <th>TOTAL
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of row.invoiceLines;"  style="line-height: 30px; border-bottom: 0.5px rgb(158, 158, 158) solid ;">
+                    <ng-container>
+                        <td>{{item.customerPoNumber}}</td>
+                        <td>{{item.dsNumbers}}</td>
+                        <td>{{item.isbn}}</td>
+                        <td>{{item.oemPo}}</td>
+                        <td>{{item.title}}</td>
+                        <td>{{item.qty}} lbs</td>
+                        <td>$ {{item.unitPrice}} </td>
+                        <td>$ {{item.qty * item.unitPrice}}</td>
+                    </ng-container>
+                </tr>
+                </tbody>
+                <thead  style="background-color: #979797; color: rgb(0, 0, 0);">
+                <tr style="line-height: 30px;">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </th>
+                    <th >
+                    </th>
+                    <th >Invoice Total(USD):
+                    </th>
+                    <th>$ {{row.total}}
+                    </th>
+
+                </tr>
+                </thead>
+
+                <tfoot >
+                </tfoot>
+            </table>
+        </div>
+        <br>
+        <br>
+        <div>
+            <p style="text-align: center; font-size: 13px;">EPAC Technologies · Calle Septima 300 Ste 1000 · Apodaca NL. CP 66603 MX.</p>
+            <p style="font-size: 13px;text-align: center;">
+
+                +52-81-8386-6679 · Doc. No.: SHP 7.5.3-1 · www.epac.com</p>
+        </div>
+
+    </div>
+     <div mat-dialog-action [align]="'end'">
+         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+         <button class="p-button-secondary" pButton pRipple type="button" label="Close"  (click)="cancel()" icon="pi pi-times" iconPos="right" mat-dialog-close ></button>
+         &nbsp; &nbsp; &nbsp;<button class="p-button-success" pButton pRipple type="button" label="save"  iconPos="right" (click)="save(row)" mat-dialog-close></button>
+     </div>
+</div>
+

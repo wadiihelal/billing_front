@@ -1,0 +1,33 @@
+
+#divChart{
+    display: flex;
+    width: 400px;
+    height: 400px;
+    padding: 3%;
+}
+.chartbox{
+    width: 600px;
+    display:inline-grid;
+    text-align: center;
+    margin: 2%;
+}
+.chartbox2{
+    width: 500px;
+    display:inline-grid;
+    text-align: center;
+    margin: 2%;
+}
+
+.center {
+    padding-top: 5% ;
+    margin-left: 12%;
+    margin-right: 12%;
+    text-align: center;
+  }
+  .header{
+    margin-left: 100px;
+    margin-top: 4%;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }

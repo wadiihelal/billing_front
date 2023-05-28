@@ -1,0 +1,40 @@
+
+<form [formGroup]="invoiceLineForm"  style="margin: 2%; text-align: center;">
+    <div  (click)="addFees()" style="display: contents;">
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+          <mat-icon>library_add</mat-icon>
+        </button>
+        </div>
+    <div style="display: inline-flex; padding: 5px;" > 
+    <div  formArrayName="types">   
+      <div *ngFor=" let  t of types.controls ; let j =index">
+        <mat-form-field appearance="outline">
+          <mat-label>Type      
+          </mat-label>
+          <input [formControlName]="j" matInput placeholder="Type " type="text" style="  text-align: center;"  >
+        </mat-form-field>   
+       </div>
+    </div>
+    <div formArrayName="fees" >
+        <div *ngFor=" let f of fees.controls; let i =index " style="display:flex; padding-left: 2%;">
+          <mat-form-field appearance="outline">
+            <mat-label>Value      
+            </mat-label>
+            <input [formControlName]="i" matInput placeholder="Value " type="number" style="  text-align: center;"  >
+          </mat-form-field>
+          <div  (click)="removeFees(i)" style="padding: 8px;">
+            <button mat-mini-fab color="warn" aria-label="Example icon button with a plus one icon">
+              <mat-icon>clear</mat-icon>
+            </button>
+            </div>
+        </div>
+  
+      </div>
+    </div> 
+    <br>
+    <div mat-dialog-action [align]="'end'" style="padding-top: 1% ;">
+        <button mat-raised-button color="warn" style=" color:white;" mat-dialog-close>Close</button>
+        <button   style="margin-left: 20px; background-color: green; ;color:white;" mat-raised-button color="" mat-dialog-close (click)="saveRow()">Save</button>
+
+    </div>
+</form>

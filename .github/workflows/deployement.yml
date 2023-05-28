@@ -1,0 +1,51 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run build -- --prod
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image
+        run: |
+          docker build -t wadiih/frontbilling:${{ github.sha }} .
+          docker login -u wadiih -p ${{ secrets.DOCKERHUB_PASSWORD }}
+          docker push wadiih/frontbilling:${{ github.sha }}
+
+  deploy-locally:
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Wait for Docker image availability
+        run: |
+          while [ -z "$(docker images -q wadiih/frontbilling:${{ github.sha }})" ]; do
+            echo "Waiting for Docker image availability..."
+            sleep 5
+          done
+
+      - name: Pull Docker image

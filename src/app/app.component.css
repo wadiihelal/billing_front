@@ -1,0 +1,27 @@
+.mat-toolbar-row, .mat-toolbar-single-row
+{
+    padding: 40px;
+    margin-bottom: 20px;
+    background: #283593;
+    color: #fff;
+}
+.mat-button
+{
+    color: black !important
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .example-icon {
+    padding: 0 14px;
+  }
+.example-spacer2 {
+   position: relative;
+   right: 40%;
+   max-width: 300px;
+  }
+
+  .menuItem
+  {
+    display: block;
+  }
